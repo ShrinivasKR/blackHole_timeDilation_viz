@@ -1,7 +1,12 @@
 var main = function(){
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
-	
+
+    //Black Hole settings
+    var blackHoleMass = 500000;
+    var referenceTime = 0;
+    var interval = 10;
+
 	//Earth orbit settings
 	var eTheta = 0;
 	var eOffset = 400;
@@ -25,12 +30,14 @@ var main = function(){
 
 	setInterval(function(){ 
 
+        referenceTime += interval;
+
 		ctx.clearRect(0,0,800,800); // clear canvas
 
 		//Sun
 		ctx.save();
-		ctx.shadowColor = 'rgba(255, 136, 77, 1)';
-		ctx.fillStyle = '#ff7f00';
+		ctx.shadowColor = '#000000';
+		ctx.fillStyle = '#000000';
 		ctx.shadowBlur = 40;
 	    ctx.lineWidth = 0.5;
 	    makeCircle(400,400, 50, 0, 2*Math.PI);
@@ -75,7 +82,12 @@ var main = function(){
 
 		makeCircle(asteroidX,asteroidY,5,"green");
 
-	}, 10);
+		$(".planet .value").html(calculateAge(blackHoleMass, eOffset));
+		$(".moon .value").html(calculateAge(blackHoleMass, eOffset));
+		$(".asteroid .value").html(calculateAge(blackHoleMass, eOffset));
+
+
+	}, interval);
 
 	function makeCircle(earthX,earthY,earthRadius,color) {
 		ctx.beginPath();
@@ -85,7 +97,17 @@ var main = function(){
 		ctx.stroke(); 
 		ctx.closePath();
 	}
-	
+
+	function calculateAge(mass, radius) {
+        var speedOfLight = 299792458;
+        var gravitationalConstant =  6.674 * Math.pow(10, -11);
+
+        var relativeTime = referenceTime * Math.sqrt(1 - (3/2) * (1/radius) * (3 * gravitationalConstant * mass)/speedOfLight)
+
+        return relativeTime;
+	}
+
+
 };
 
 $(document).ready(main);
