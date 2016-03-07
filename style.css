@@ -1,11 +1,7 @@
-canvas {
-	border:3px solid blue;
-}
 .black-hole-orbit {
 	margin-left: auto;
     margin-right: auto;
 	height: 800px;
     width: 800px;
     margin-top: 100px;
-    border:3px solid #73AD21;
 }

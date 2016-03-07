@@ -1,97 +1,62 @@
 var main = function(){
+	'use strict';
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
+	var canvasDim = 800;
+	var offset = canvasDim / 2;
 
-    //Black Hole settings
-    var blackHoleMass = 500000;
+	var interval = 10;
+
+	// center mass settings
+	var centerMass = 5000000000;
+
+	//constants
+	var gravitationalConstant =  6.674 * Math.pow(10, -11);
+	var speedOfLight = 299792458;
+	var lowerBound = (3 * centerMass * gravitationalConstant) / (speedOfLight ^ 2);
+
     var referenceTime = 0;
-    var interval = 10;
 
-	//Earth orbit settings
-	var eTheta = 0;
-	var eOffset = 400;
-	var earthPeriod = 500;
-	var earthFreq = 1/earthPeriod;
-	var earthRadius = 300;
+	// orbiting masses
+	var orbitingMasses = [];
 
-	//Moon orbit settings
-	var mTheta = 0;
-	var mOffset = 20;
-	var moonPeriod = 100;
-	var moonFreq = 1/moonPeriod;
-	var moonRadius = 40;
-    
-	//Asteroid orbit settings
-	var aTheta = 0;
-	var aOffset = 20;
-	var asteroidPeriod = 10;
-	var asteroidFreq = 1/asteroidPeriod;
-	var asteroidRadius = 20;    
+	addMass('earth', 150, "blue"); //debug
+	addMass('earth', 200, "red"); //debug
 
 	setInterval(function(){ 
 
         referenceTime += interval;
 
-		ctx.clearRect(0,0,800,800); // clear canvas
+		ctx.clearRect(0,0,canvasDim,canvasDim); // clear canvas
 
-		//Sun
+		//center mass
 		ctx.save();
 		ctx.shadowColor = '#000000';
 		ctx.fillStyle = '#000000';
 		ctx.shadowBlur = 40;
 	    ctx.lineWidth = 0.5;
-	    makeCircle(400,400, 50, 0, 2*Math.PI);
+	    makeCircle(offset, offset, 50, 0, 2*Math.PI);
 	    ctx.restore();
 
-		//Orbit path
-		ctx.beginPath();
-		ctx.arc(eOffset,eOffset,300,0,2*Math.PI);
-		ctx.stroke();
-		ctx.closePath();
-		
-		//Earth
-		eTheta += earthFreq;
-		
-		if(eTheta >= 2*Math.PI)
-			eTheta = 0;
-		
-		var earthX = (earthRadius * Math.cos(eTheta)) + eOffset;
-		var earthY = (earthRadius * Math.sin(eTheta)) + eOffset;
-		
-		makeCircle(earthX,earthY,15,"blue");
-		
-		//Moon
-		mTheta += moonFreq;
-		
-		if(mTheta >= 2*Math.PI)
-			mTheta = 0;
 
-		var moonX = (moonRadius * Math.cos(mTheta)) + earthX;
-		var moonY = (moonRadius * Math.sin(mTheta)) + earthY;
+		orbitingMasses.forEach(function(mass) {
+			var velocity = Math.sqrt(gravitationalConstant * centerMass / mass.radius);
+			mass.theta = mass.theta + (velocity / mass.radius * interval);
 
-		makeCircle(moonX,moonY,5,"gray");
+			var objectX = mass.radius * Math.cos(mass.theta) + offset;
+			var objectY = mass.radius * Math.sin(mass.theta) + offset;
+			var color = 'blue';
+			makeCircle(objectX, objectY, mass.size, mass.color);
+		});
 
-		//Asteroid
-		aTheta += asteroidFreq;
-		
-		if(aTheta >= 2*Math.PI)
-			aTheta = 0;
-
-		var asteroidX = (asteroidRadius * Math.cos(aTheta)) + moonX;
-		var asteroidY = (asteroidRadius * Math.sin(aTheta)) + moonY;
-
-		makeCircle(asteroidX,asteroidY,5,"green");
-
-		$(".planet .value").html(calculateAge(blackHoleMass, eOffset));
-		$(".moon .value").html(calculateAge(blackHoleMass, eOffset));
-		$(".asteroid .value").html(calculateAge(blackHoleMass, eOffset));
-
+		$(".planet .value").html(calculateAge(centerMass, offset));
 
 	}, interval);
 
-	function makeCircle(earthX,earthY,earthRadius,color) {
+	function makeCircle(objectX, objectY, size,color) {
+		console.log(objectX, objectY);
 		ctx.beginPath();
-		ctx.arc(earthX,earthY,earthRadius,0,2*Math.PI);
+		ctx.arc(objectX,objectY,size,0,2*Math.PI);
 		ctx.fillStyle = color;
 		ctx.fill();
 		ctx.stroke(); 
@@ -99,14 +64,21 @@ var main = function(){
 	}
 
 	function calculateAge(mass, radius) {
-        var speedOfLight = 299792458;
-        var gravitationalConstant =  6.674 * Math.pow(10, -11);
 
         var relativeTime = referenceTime * Math.sqrt(1 - (3/2) * (1/radius) * (3 * gravitationalConstant * mass)/speedOfLight)
 
         return relativeTime;
 	}
 
+	function addMass(name, radius, color) {
+		orbitingMasses.push({
+			name: name,
+			radius: radius,
+			theta: 0,
+			size: 10,
+			color: color
+		})
+	}
 
 };
 
