@@ -21,7 +21,9 @@ var main = function(){
 	var orbitingMasses = [];
 
 	addMass('earth', 150, "blue"); //debug
-	addMass('earth', 200, "red"); //debug
+	addMass('mars', 200, "red"); //debug
+
+    var orbitalDetails = "";
 
 	setInterval(function(){ 
 
@@ -49,12 +51,18 @@ var main = function(){
 			makeCircle(objectX, objectY, mass.size, mass.color);
 		});
 
-		$(".planet .value").html(calculateAge(centerMass, offset));
+        orbitalDetails = '';
+        $.each(orbitingMasses , function (index, value){
+            //console.log(JSON.stringify(value));
+            orbitalDetails += 'Relative ' + value.name + ' time: ' + calculateAge(centerMass, offset) + '<br>';
+        });
+		$(".planet .value").html(orbitalDetails);
+		$(".reference .value").html(referenceTime);
 
 	}, interval);
 
 	function makeCircle(objectX, objectY, size,color) {
-		console.log(objectX, objectY);
+		//console.log(objectX, objectY);
 		ctx.beginPath();
 		ctx.arc(objectX,objectY,size,0,2*Math.PI);
 		ctx.fillStyle = color;
