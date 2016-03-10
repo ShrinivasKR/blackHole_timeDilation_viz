@@ -14,7 +14,7 @@ $(function() {
 
 	// center object mass settings
 	var centerObjectMass = 5000000000;
-	var centerObjectSize = 50;
+	var centerObjectSize = 10; //arbitrary
 
 	// physical constants and constraints
 	var gravitationalConstant =  6.674 * Math.pow(10, -11);
@@ -49,7 +49,6 @@ $(function() {
 
 			var timeSelector = $("#" + object.name);
 			if (!timeSelector.length) {
-				console.log("getting here");
 				$("#sidebar").append("<p>" + object.name + " is  ahead by: <span id=" + object.name + "></span></p>")
 			}
 			timeSelector.text(amountAhead)
@@ -61,6 +60,15 @@ $(function() {
 		// relative time
 		return referenceTime * Math.sqrt(1 - (3/2) *
 				(1/radius) * (3 * gravitationalConstant * mass)/speedOfLight);
+	}
+
+	function getCircleToPath(x, y, r){ //x and y are center, r is radius
+		return 'M ' +
+			x + ',' + (y-r)+
+			' A ' + r + ',' + r +
+			' 45 1,1 ' +
+			(x-0.1) + ',' + (y-r) +
+			' z';
 	}
 
 	// add object to system
@@ -77,7 +85,11 @@ $(function() {
 			y: y,
 			theta: 0,
 			raphaelObj: paper.circle(x, y, 10).attr("fill", color).attr("stroke", color) //arbitrary size 10
-		})
+		});
+
+		//paper.circle(x, y, 10).attr("fill", color).attr("stroke", color).animate({
+		//	path: getCircleToPath(centerOffset, centerOffset, radius)
+		//}, 500, 'bounce')
 	}
 
 });
