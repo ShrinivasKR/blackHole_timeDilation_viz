@@ -1,93 +1,83 @@
-var main = function(){
+/**
+ * Created by rohana on 3/9/16.
+ */
+
+$(function() {
 	'use strict';
-	var c = document.getElementById("myCanvas");
-	var ctx = c.getContext("2d");
-	var canvasDim = 800;
-	var offset = canvasDim / 2;
-
+	// setup constants
+	var canvasX = 250;
+	var canvasY = 50;
+	var canvasDim = 500;
+	var centerOffset = canvasDim / 2;
 	var interval = 10;
+	var referenceTime = 0;
 
-	// center mass settings
-	var centerMass = 5000000000;
+	// center object mass settings
+	var centerObjectMass = 5000000000;
+	var centerObjectSize = 50;
 
-	//constants
+	// physical constants and constraints
 	var gravitationalConstant =  6.674 * Math.pow(10, -11);
 	var speedOfLight = 299792458;
-	var lowerBound = (3 * centerMass * gravitationalConstant) / (speedOfLight ^ 2);
+	var lowerBound = (3 * centerObjectMass * gravitationalConstant) / (speedOfLight ^ 2);
 
-    var referenceTime = 0;
+	// orbiting objects
+	var orbitingObjects = [];
 
-	// orbiting masses
-	var orbitingMasses = [];
+	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
+	var centerObject = paper.circle(centerOffset, centerOffset, centerObjectSize);
+	centerObject.attr("fill", "#000").attr("stroke", "#fff");
 
-	addMass('earth', 150, "blue"); //debug
-	addMass('mars', 200, "red"); //debug
+	addObject('earth', 150, "blue"); //debug
+	addObject('mars', 200, "red"); //debug
 
-    var orbitalDetails = "";
+	setInterval(function(){
 
-	setInterval(function(){ 
+		referenceTime += interval;
+		$('#reference').text(referenceTime);
 
-        referenceTime += interval;
+		orbitingObjects.forEach(function(object) {
+			var velocity = Math.sqrt(gravitationalConstant * centerObjectMass / object.radius);
+			object.theta = object.theta + (velocity / object.radius * interval);
+			var dx = object.radius * Math.cos(object.theta) + centerOffset - object.x;
+			object.x = object.x + dx;
+			var dy = object.radius * Math.sin(object.theta) + centerOffset - object.y;
+			object.y = object.y + dy;
+			object.raphaelObj.translate(dx, dy);
 
-		ctx.clearRect(0,0,canvasDim,canvasDim); // clear canvas
+			var amountAhead = referenceTime - calculateAge(centerObjectMass, object.radius);
 
-		//center mass
-		ctx.save();
-		ctx.shadowColor = '#000000';
-		ctx.fillStyle = '#000000';
-		ctx.shadowBlur = 40;
-	    ctx.lineWidth = 0.5;
-	    makeCircle(offset, offset, 50, 0, 2*Math.PI);
-	    ctx.restore();
-
-
-		orbitingMasses.forEach(function(mass) {
-			var velocity = Math.sqrt(gravitationalConstant * centerMass / mass.radius);
-			mass.theta = mass.theta + (velocity / mass.radius * interval);
-
-			var objectX = mass.radius * Math.cos(mass.theta) + offset;
-			var objectY = mass.radius * Math.sin(mass.theta) + offset;
-			var color = 'blue';
-			makeCircle(objectX, objectY, mass.size, mass.color);
+			var timeSelector = $("#" + object.name);
+			if (!timeSelector.length) {
+				console.log("getting here");
+				$("#sidebar").append("<p>" + object.name + " is  ahead by: <span id=" + object.name + "></span></p>")
+			}
+			timeSelector.text(amountAhead)
 		});
-
-        orbitalDetails = '';
-        $.each(orbitingMasses , function (index, value){
-            //console.log(JSON.stringify(value));
-            orbitalDetails += 'Relative ' + value.name + ' time: ' + calculateAge(centerMass, offset) + '<br>';
-        });
-		$(".planet .value").html(orbitalDetails);
-		$(".reference .value").html(referenceTime);
 
 	}, interval);
 
-	function makeCircle(objectX, objectY, size,color) {
-		//console.log(objectX, objectY);
-		ctx.beginPath();
-		ctx.arc(objectX,objectY,size,0,2*Math.PI);
-		ctx.fillStyle = color;
-		ctx.fill();
-		ctx.stroke(); 
-		ctx.closePath();
-	}
-
 	function calculateAge(mass, radius) {
-
-        var relativeTime = referenceTime * Math.sqrt(1 - (3/2) * (1/radius) * (3 * gravitationalConstant * mass)/speedOfLight)
-
-        return relativeTime;
+		// relative time
+		return referenceTime * Math.sqrt(1 - (3/2) *
+				(1/radius) * (3 * gravitationalConstant * mass)/speedOfLight);
 	}
 
-	function addMass(name, radius, color) {
-		orbitingMasses.push({
+	// add object to system
+	function addObject(name, radius, color) {
+		if (radius < lowerBound){
+			return false;
+		}
+		var x = radius * Math.cos(0) + centerOffset;
+		var y = radius * Math.sin(0) + centerOffset;
+		orbitingObjects.push({
 			name: name,
 			radius: radius,
+			x: x,
+			y: y,
 			theta: 0,
-			size: 10,
-			color: color
+			raphaelObj: paper.circle(x, y, 10).attr("fill", color).attr("stroke", color) //arbitrary size 10
 		})
 	}
 
-};
-
-$(document).ready(main);
+});

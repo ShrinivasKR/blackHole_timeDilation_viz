@@ -5,3 +5,16 @@
     width: 800px;
     margin-top: 100px;
 }
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    z-index: 1;
+    color: #FFF;
+    background-color: rgba(24, 28, 34, 0.8);
+    font-size: 16px;
+}
+

@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style.css" type="./style.css">
-</head>
-<body>
-    <div class="container">
-
-        <div class="black-hole-orbit">
-            <canvas id="myCanvas" width="800" height="800"></canvas>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="sidebar">
+            <p>Reference Time: <span id="reference"></span></p>
         </div>
 
-        <div class="reference">Standard Reference Time <span class='value'></span></div>
-        <div class="planet"><span class='value'></span></div>
-
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="./app.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+        <script src="app.js"></script>
+    </body>
 </html>
