@@ -174,8 +174,7 @@ actionsInViewports = (function() {
 
   window.onscroll = function() {
 
-    content1InVP.change($("#content-1").isOnScreen(1, 1), function() {
-
+    content1InVP.change(verge.inY($( "#content-1" ),-verge.viewportH()/2), function() {
       TweenMax.to($("#content-1 .bg-background"), 2, {
         backgroundColor: "rgba(0, 0, 0, " + 0.6 + ")",
         force3D: true,
@@ -183,7 +182,6 @@ actionsInViewports = (function() {
       });
 
     }, function() {
-
       TweenMax.to($("#content-1 .bg-background"), 2, {
         backgroundColor: "rgba(0, 0, 0, " + 0 + ")",
         force3D: true,
