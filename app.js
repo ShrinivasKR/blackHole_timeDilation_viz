@@ -9,8 +9,9 @@ $(function() {
 	var canvasY = 50;
 	var canvasDim = 500;
 	var centerOffset = canvasDim / 2;
-	var interval = 10;
+	var interval = 5;
 	var referenceTime = 0;
+	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
 
 	// center object mass settings
 	var centerObjectMass = 5000000000;
@@ -23,15 +24,17 @@ $(function() {
 
 	// orbiting objects
 	var orbitingObjects = [];
-
-	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
-	var centerObject = paper.circle(centerOffset, centerOffset, centerObjectSize);
-	centerObject.attr("fill", "#000").attr("stroke", "#fff");
-
 	addObject('earth', 150, "blue"); //debug
 	addObject('mars', 200, "red"); //debug
 
-	setInterval(function(){
+	// center mass/black hole
+	var centerObject = paper.circle(centerOffset, centerOffset, centerObjectSize);
+	centerObject.attr("fill", "#000").attr("stroke", "#000");
+
+	// initialize movement
+	movePlanets();
+
+	function movePlanets(){
 
 		referenceTime += interval;
 		$('#reference').text(referenceTime);
@@ -39,11 +42,9 @@ $(function() {
 		orbitingObjects.forEach(function(object) {
 			var velocity = Math.sqrt(gravitationalConstant * centerObjectMass / object.radius);
 			object.theta = object.theta + (velocity / object.radius * interval);
-			var dx = object.radius * Math.cos(object.theta) + centerOffset - object.x;
-			object.x = object.x + dx;
-			var dy = object.radius * Math.sin(object.theta) + centerOffset - object.y;
-			object.y = object.y + dy;
-			object.raphaelObj.translate(dx, dy);
+			object.x = object.radius * Math.cos(object.theta);
+			object.y = object.radius * Math.sin(object.theta);
+			object.raphaelObj.transform('t' + object.x + ',' + object.y);
 
 			var amountAhead = referenceTime - calculateAge(centerObjectMass, object.radius);
 
@@ -54,21 +55,13 @@ $(function() {
 			timeSelector.text(amountAhead)
 		});
 
-	}, interval);
+		setTimeout(function(){ movePlanets(); }, interval);
+	}
 
 	function calculateAge(mass, radius) {
 		// relative time
 		return referenceTime * Math.sqrt(1 - (3/2) *
 				(1/radius) * (3 * gravitationalConstant * mass)/speedOfLight);
-	}
-
-	function getCircleToPath(x, y, r){ //x and y are center, r is radius
-		return 'M ' +
-			x + ',' + (y-r)+
-			' A ' + r + ',' + r +
-			' 45 1,1 ' +
-			(x-0.1) + ',' + (y-r) +
-			' z';
 	}
 
 	// add object to system
@@ -77,7 +70,9 @@ $(function() {
 			return false;
 		}
 		var x = radius * Math.cos(0) + centerOffset;
+		x = centerOffset;
 		var y = radius * Math.sin(0) + centerOffset;
+		y = centerOffset;
 		orbitingObjects.push({
 			name: name,
 			radius: radius,
@@ -86,10 +81,7 @@ $(function() {
 			theta: 0,
 			raphaelObj: paper.circle(x, y, 10).attr("fill", color).attr("stroke", color) //arbitrary size 10
 		});
-
-		//paper.circle(x, y, 10).attr("fill", color).attr("stroke", color).animate({
-		//	path: getCircleToPath(centerOffset, centerOffset, radius)
-		//}, 500, 'bounce')
 	}
 
 });
+
