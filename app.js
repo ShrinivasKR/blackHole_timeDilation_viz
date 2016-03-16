@@ -138,6 +138,12 @@ $(function() {
 	})
 
 	$( "#resetTimes" ).click(function() {
-		referenceTime = 0;
+        console.log("reset times");
+        referenceTime = 0;
 	});
+
+    $( "#addParticleButton" ).click(function() {
+        console.log("Adding Particle of Name: " + $('#particleName').val() + " Radius: " + $('#particleRadius').val()+ " Color: " + $('#particleColor').val());
+        addObject($('#particleName').val(), $('#particleRadius').val(), $('#particleColor').val())
+    });
 });

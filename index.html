@@ -50,7 +50,18 @@
             <p>Reference Time: <span id="reference"></span></p>
 
             <div id="relativeTimes"></div>
-            <button id="resetTimes" type="button" class="btn btn-primary">Reset Time</button>
+            <button id="resetTimes" type="button" class="btn btn-primary">Reset Time</button><br><br>
+
+            <div id="addParticle">
+                <h3>Add a Particle</h3>
+                <label for="particleName">Name</label><br>
+                <input type="text" id="particleName" placeholder="Name"><br>
+                <label for="particleRadius">Radius</label><br>
+                <input type="number" id="particleRadius" placeholder="Radius"><br>
+                <label for="particleColor">Color</label><br>
+                <input type="color" id="particleColor" placeholder="Color"><br><br>
+                <button id="addParticleButton" type="button" class="btn btn-primary">Add Particle</button>
+            </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
