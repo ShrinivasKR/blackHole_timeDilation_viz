@@ -292,14 +292,14 @@ canvas {
     position: relative;
     z-index: 100;
 }
-.container{
+
+.container {
     position: absolute;
     top: 50%;
     left: 50%;
     display: block;
     transform: translate3d(-50%, -50%, 0);
 }
-
 
 .title .big-title {
     font-weight: 900;
@@ -310,24 +310,29 @@ canvas {
     text-transform: uppercase;
 }
 
-.content p{
+.content p {
     font-size: 2em;
     line-height: 2.5em;
     text-align: center;
 }
-.bg-background{
+
+.bg-background {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-}
-.bg-color-black{
-    background-color: #000;
-    opacity: 0;
-}
-.bg-color-white{
-    background-color: #fff;
-    opacity: 0;
+    -webkit-filter: blur(50px);
+    -moz-filter: blur(50px);
+    -o-filter: blur(50px);
+    -ms-filter: blur(50px);
+    filter: blur(50px);
 }
 
+.bg-color-black {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.bg-color-white {
+    background-color: rgba(255, 255, 255, 0);
+}

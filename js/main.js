@@ -1,3 +1,47 @@
+$.fn.isOnScreen = function(x, y) {
+
+  if (x == null || typeof x == 'undefined') x = 1;
+  if (y == null || typeof y == 'undefined') y = 1;
+
+  var win = $(window);
+
+  var viewport = {
+    top: win.scrollTop(),
+    left: win.scrollLeft()
+  };
+  viewport.right = viewport.left + win.width();
+  viewport.bottom = viewport.top + win.height();
+
+  var height = this.outerHeight();
+  var width = this.outerWidth();
+
+  if (!width || !height) {
+    return false;
+  }
+
+  var bounds = this.offset();
+  bounds.right = bounds.left + width;
+  bounds.bottom = bounds.top + height;
+
+  var visible = (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+
+  if (!visible) {
+    return false;
+  }
+
+  var deltas = {
+    top: Math.min(1, (bounds.bottom - viewport.top) / height),
+    bottom: Math.min(1, (viewport.bottom - bounds.top) / height),
+    left: Math.min(1, (bounds.right - viewport.left) / width),
+    right: Math.min(1, (viewport.right - bounds.left) / width)
+  };
+
+  return (deltas.left * deltas.right) >= x && (deltas.top * deltas.bottom) >= y;
+
+};
+
+
+
 var fullWindowWrapper = (function() {
   $(".full-wrapper").css({
     width: window.innerWidth,
@@ -12,6 +56,7 @@ var fullWindowWrapper = (function() {
     });
   }
 });
+
 var blackHoleSimulation = (function() {
   // Global Animation Setting
   window.requestAnimFrame =
@@ -102,5 +147,58 @@ var blackHoleSimulation = (function() {
 
   loop();
 })
+actionsInViewports = (function() {
+
+  function inViewportOnceObj() {
+
+    this.value = false;
+
+    this.change = function(_value, onCallback, offCallback) {
+      if (this.value != _value) {
+        this.value = _value;
+        if (this.value) {
+
+          onCallback();
+
+        } else {
+
+          offCallback();
+
+        }
+      }
+    }
+
+  }
+
+  var content1InVP = new inViewportOnceObj();
+
+  window.onscroll = function() {
+
+    content1InVP.change($("#content-1").isOnScreen(1, 1), function() {
+
+      TweenMax.to($("#content-1 .bg-background"), 2, {
+        backgroundColor: "rgba(0, 0, 0, " + 0.6 + ")",
+        force3D: true,
+        ease: Power3.easeOut
+      });
+
+    }, function() {
+
+      TweenMax.to($("#content-1 .bg-background"), 2, {
+        backgroundColor: "rgba(0, 0, 0, " + 0 + ")",
+        force3D: true,
+        ease: Power3.easeOut
+      });
+
+    });
+  }
+
+
+
+});
+
+
+
 fullWindowWrapper();
+actionsInViewports();
 blackHoleSimulation();
