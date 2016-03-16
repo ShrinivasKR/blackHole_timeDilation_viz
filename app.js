@@ -9,7 +9,8 @@ $(function() {
 	var canvasY = 50;
 	var canvasDim = 500;
 	var centerOffset = canvasDim / 2;
-	var interval = 5;
+	const interval = 5; // DO NOT MODIFY THIS ONE
+	var animationState = 1; // 1 for play
 	var referenceTime = 0;
 	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
 
@@ -35,13 +36,13 @@ $(function() {
 	movePlanets();
 
 	function movePlanets(){
-
-		referenceTime += interval;
+		var timePassed = interval * animationState;
+		referenceTime += timePassed;
 		$('#reference').text(referenceTime);
 
 		orbitingObjects.forEach(function(object) {
 			var velocity = Math.sqrt(gravitationalConstant * centerObjectMass / object.radius);
-			object.theta = object.theta + (velocity / object.radius * interval);
+			object.theta = object.theta + (velocity / object.radius * timePassed);
 			object.x = object.radius * Math.cos(object.theta);
 			object.y = object.radius * Math.sin(object.theta);
 			object.raphaelObj.transform('t' + object.x + ',' + object.y);
@@ -55,7 +56,11 @@ $(function() {
 			timeSelector.text(amountAhead)
 		});
 
-		setTimeout(function(){ movePlanets(); }, interval);
+		if (animationState) { // if animationState is 0, break to save memory
+			setTimeout(function () {
+				movePlanets();
+			}, interval);
+		} //else {console.log('failings')} // debug code
 	}
 
 	function calculateAge(mass, radius) {
@@ -69,10 +74,8 @@ $(function() {
 		if (radius < lowerBound){
 			return false;
 		}
-		var x = radius * Math.cos(0) + centerOffset;
-		x = centerOffset;
-		var y = radius * Math.sin(0) + centerOffset;
-		y = centerOffset;
+		var x = centerOffset;
+		var y = centerOffset;
 		orbitingObjects.push({
 			name: name,
 			radius: radius,
@@ -83,5 +86,42 @@ $(function() {
 		});
 	}
 
-});
+	$('#button_fbw').click(function(){
+		console.log("restart invoked.");
+		animationState = 0;
+		// code to reset
+	});
 
+	$('#button_pause').click(function() {
+		console.log("pause invoked.");
+		animationState = 0;
+	});
+
+	$('#button_play').click(function() {
+		console.log("play invoked. " + animationState);
+		var lastState = animationState;
+		animationState = 1;
+		if (lastState === 0) {
+			movePlanets();
+		}
+	});
+
+	$('#button_fw').click(function(){
+		console.log("button forward invoked.");
+		var lastState = animationState;
+		animationState = 2;
+		if (lastState === 0) {
+			movePlanets();
+		}
+	});
+
+	$('#button_ffw').click(function(){
+		console.log("button fast forward invoked.");
+		var lastState = animationState;
+		animationState = 4;
+		if (lastState === 0) {
+			movePlanets();
+		}
+	});
+
+});
