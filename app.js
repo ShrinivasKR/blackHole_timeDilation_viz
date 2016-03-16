@@ -52,7 +52,7 @@ $(function() {
 
 			var timeSelector = $("#" + object.name);
 			if (!timeSelector.length) {
-				$("#sidebar").append("<p>" + object.name + " is  ahead by: <span id=" + object.name + "></span></p>")
+				$("#relativeTimes").append("<p>" + object.name + " is  ahead by: <span id=" + object.name + "></span></p>")
 			}
 			timeSelector.text(amountAhead)
 		});
@@ -136,4 +136,8 @@ $(function() {
 			centerObjectMass = centerObjectMass / 2
 		}
 	})
+
+	$( "#resetTimes" ).click(function() {
+		referenceTime = 0;
+	});
 });
