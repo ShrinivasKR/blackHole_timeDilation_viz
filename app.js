@@ -38,6 +38,7 @@ $(function() {
 	function movePlanets(){
 		var timePassed = interval * animationState;
 		referenceTime += timePassed;
+		$('#center_mass').text(centerObjectMass);
 		$('#reference').text(referenceTime);
 
 		orbitingObjects.forEach(function(object) {
@@ -124,4 +125,21 @@ $(function() {
 		}
 	});
 
+	$('#increase_mass').click(function() {
+		console.log("increasing mass");
+		if (centerObjectMass >= 500000000) {
+			centerObjectMass += 500000000
+		} else {
+			centerObjectMass = centerObjectMass * 2
+		}
+	});
+
+	$('#decrease_mass').click(function() {
+		console.log("increasing mass");
+		if (centerObjectMass > 500000000) {
+			centerObjectMass -= 500000000
+		} else if (centerObjectMass > 250000000) {
+			centerObjectMass = centerObjectMass / 2
+		}
+	})
 });

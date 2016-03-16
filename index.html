@@ -10,6 +10,14 @@
     <body>
         <div id="sidebar">
             <div class="player text-center">
+                <button type="button" id="increase_mass" class="btn">
+                    <i class="fa fa-plus"></i>
+                </button>
+                <button type="button" id="decrease_mass" class="btn">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <div class="player text-center">
                 <button type="button" id="button_fbw" class="btn">
                     <i class="fa fa-fast-backward"></i>
                 </button>
@@ -38,6 +46,7 @@
                     <i class="fa fa-fast-forward"></i>
                 </button>
             </div>
+            <p>Center Object Mass: <span id="center_mass"></span></p>
             <p>Reference Time: <span id="reference"></span></p>
         </div>
 
