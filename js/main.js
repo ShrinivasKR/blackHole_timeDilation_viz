@@ -30,7 +30,6 @@ var blackHoleSimulation = (function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-
   // Particles Around the Parent
   function Particle(x, y, distance) {
     this.angle = Math.random() * 2 * Math.PI;
