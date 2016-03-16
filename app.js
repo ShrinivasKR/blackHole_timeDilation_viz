@@ -9,7 +9,7 @@ $(function() {
 	var canvasY = 50;
 	var canvasDim = 500;
 	var centerOffset = canvasDim / 2;
-	const interval = 5; // DO NOT MODIFY THIS ONE
+	const interval = 3; // DO NOT MODIFY THIS ONE
 	var animationState = 1; // 1 for play
 	var referenceTime = 0;
 	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
@@ -127,18 +127,12 @@ $(function() {
 
 	$('#increase_mass').click(function() {
 		console.log("increasing mass");
-		if (centerObjectMass >= 500000000) {
-			centerObjectMass += 500000000
-		} else {
-			centerObjectMass = centerObjectMass * 2
-		}
+		centerObjectMass = centerObjectMass * 2
 	});
 
 	$('#decrease_mass').click(function() {
 		console.log("increasing mass");
-		if (centerObjectMass > 500000000) {
-			centerObjectMass -= 500000000
-		} else if (centerObjectMass > 250000000) {
+		if (centerObjectMass > 250000000) {
 			centerObjectMass = centerObjectMass / 2
 		}
 	})
