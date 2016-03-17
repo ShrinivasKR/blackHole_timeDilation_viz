@@ -94,19 +94,34 @@
   <div class="full-wrapper content" id="content-5">
     <div class="bg-background non-opaq-black"></div>
     <div class="lightDistortionWrapper">
-    
+        
         <canvas id="lightDistortionContainer" width="100%" height="100%"></canvas>
 
     </div>
-  </div>
-     <div class="full-wrapper title" id="title-3">
-        <div class="bg-background non-opaq-black"></div>
-        <div class="container">
-            <div class="row">
-                <h1 class="big-title text-center">Black Hole Gravity</h1>
-            </div>
+</div>
+<div class="full-wrapper title" id="title-3">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <h1 class="big-title text-center">Black Hole Gravity</h1>
         </div>
     </div>
+</div>
+
+<div class="full-wrapper title" id="content-6">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <p>
+                  Black holes, because of their very intense gravity will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted. See how that looks like in the next section...
+              </p>
+          </div>
+
+
+      </div>
+  </div>
+</div>
 
 
 
@@ -124,12 +139,12 @@
 <script>
 
 
-BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
+    BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
     distanceFromBlackHole: 150, // 80 is default
     polynomialDegree: 2, // 2 is default
     numAngleTableEntries: 1000, // 1000 is default. More might improve quality but impact performance
     fovAngleInDegrees: 80, // 73 is default. Yeah, it's an unusual choice, but it just looked cool, ok?
-  });
+});
 </script>
 <script src="js/main.js"></script>
 
