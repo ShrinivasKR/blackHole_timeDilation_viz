@@ -6,7 +6,7 @@ $(function() {
 	'use strict';
 	// setup constants
 	var canvasX = 250;
-	var canvasY = 50;
+	var canvasY = 0;
 	var canvasWidth = $(document).width() - (2 * $('#sidebar').width());
 	var canvasHeight = $(document).height();
 	var centerYOffset = canvasHeight / 2;
