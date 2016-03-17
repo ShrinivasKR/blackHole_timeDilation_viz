@@ -77,7 +77,7 @@
         <div class="bg-background non-opaq-black"></div>
         <div class="container">
             <div class="row">
-                <h2>Black Hole Formation Process</h2>
+                <h2>Light Distortion</h2>
             </div>
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1">
@@ -93,8 +93,25 @@
   </div>
   <div class="full-wrapper content" id="content-5">
     <div class="bg-background non-opaq-black"></div>
-    <div id="lightdistortion"></div>
-</div>
+    <div class="lightDistortionWrapper">
+    
+
+    
+        <div id="lightDistortionContainer" width="100%" height="100%"></div>
+    
+
+    </div>
+  </div>
+     <div class="full-wrapper title" id="title-3">
+        <div class="bg-background non-opaq-black"></div>
+        <div class="container">
+            <div class="row">
+                <h1 class="big-title text-center">Black Hole Gravity</h1>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
@@ -106,8 +123,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
 <script src="js/vendor/lightDistortion.js"></script>
 <script src="js/plugins.js"></script>
+
 <script>
-    BlackHole.blackHoleifyImage('lightdistortion', 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Carina_Dwarf_Galaxy.jpg');
+
+
+BlackHole.blackHoleifyImage('lightDistortionContainer', 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Carina_Dwarf_Galaxy.jpg',{
+    distanceFromBlackHole: 150, // 80 is default
+    polynomialDegree: 2, // 2 is default
+    numAngleTableEntries: 1000, // 1000 is default. More might improve quality but impact performance
+    fovAngleInDegrees: 80, // 73 is default. Yeah, it's an unusual choice, but it just looked cool, ok?
+  });
 </script>
 <script src="js/main.js"></script>
 
