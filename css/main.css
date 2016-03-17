@@ -293,7 +293,7 @@ canvas {
     display: block;
     z-index: 100;
 }
-h1,h2,h3,h4{
+h1,h2,h3,h4, h5{
     text-align: center;
 }
 .container {
@@ -313,23 +313,30 @@ h1,h2,h3,h4{
     text-transform: uppercase;
 }
 
+.title p {
+    font-size: 2em;
+    line-height: 2.5em;
+    text-align: center;
+}
 .content p {
     font-size: 2em;
     line-height: 2.5em;
     text-align: center;
 }
 
+#content-2 h5{
+    padding: 50px 0px 25px;
+}
+#content-2 p {
+    font-size: 1em;
+    line-height: 1.5em;
+}
 .bg-background {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    -webkit-filter: blur(50px);
-    -moz-filter: blur(50px);
-    -o-filter: blur(50px);
-    -ms-filter: blur(50px);
-    filter: blur(50px);
 }
 
 .bg-color-black {
@@ -345,4 +352,11 @@ h1,h2,h3,h4{
 }
 .non-opaq-white{
     background-color: rgba(255, 255, 255, 1);   
+}
+#content-1.bg-background {
+    -webkit-filter: blur(50px);
+    -moz-filter: blur(50px);
+    -o-filter: blur(50px);
+    -ms-filter: blur(50px);
+    filter: blur(50px);
 }

@@ -144,7 +144,7 @@ var blackHoleSimulation = (function() {
     emitter.update();
     requestAnimFrame(loop);
   }
-
+  
   loop();
 })
 actionsInViewports = (function() {
@@ -171,6 +171,8 @@ actionsInViewports = (function() {
   }
 
   var content1InVP = new inViewportOnceObj();
+  var content2InVP = new inViewportOnceObj();
+  var content3InVP = new inViewportOnceObj();
 
   window.onscroll = function() {
 
@@ -189,6 +191,10 @@ actionsInViewports = (function() {
       });
 
     });
+
+
+
+
   }
 
 
