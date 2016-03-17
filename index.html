@@ -100,25 +100,25 @@
     </div>
 </div>
 <div class="full-wrapper content" id="content-6">
-        <div class="bg-background non-opaq-black"></div>
-        <div class="container">
-            <div class="row">
-                <h2>Black hole gravity</h2>
-            </div>
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                  <p>
-                      The below simulation shows how black holes affect the trajectory of light. 
-                  </p>
-              </div>
-
-
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <h2>Black hole gravity</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <p>
+                  The below simulation shows how black holes affect the trajectory of light. 
+              </p>
           </div>
 
-      </div>
-  </div>
 
-<div class="full-wrapper title" id="content-7">
+      </div>
+
+  </div>
+</div>
+
+<div class="full-wrapper content" id="content-7">
     <div class="bg-background non-opaq-black"></div>
     <div class="gravitySimulationWrapper">
 
@@ -127,24 +127,86 @@
     </div>
 </div>
 <div class="full-wrapper content" id="content-8">
-        <div class="bg-background non-opaq-black"></div>
-        <div class="container">
-            <div class="row">
-                <h2>Black hole and time dilation</h2>
-            </div>
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                  <p>
-                      While this visualization below doesn't specifically show a black hole, it does help intuit how objects would have to behave to stay in orbit around an object with increasing mass (black hole). We also assume that the masses of the orbiting objects are negligible compared to the center mass and that the orbits are perfectly circular"
-                  </p>
-              </div>
-
-
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <h2>Black hole and time dilation</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <p>
+                  While this visualization below doesn't specifically show a black hole, it does help intuit how objects would have to behave to stay in orbit around an object with increasing mass (black hole). We also assume that the masses of the orbiting objects are negligible compared to the center mass and that the orbits are perfectly circular"
+              </p>
           </div>
 
-      </div>
-  </div>
 
+      </div>
+
+  </div>
+</div>
+<div class="full-wrapper content" id="content-9">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="timeDilationSimulationWrapper">
+
+        <div id="timeDilationSimulationContainer">
+            <div id="sidebar">
+                <div class="player text-center">
+                    <button type="button" id="increase_mass" class="btn">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button type="button" id="decrease_mass" class="btn">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <div class="player text-center">
+                    <button type="button" id="button_stop" class="btn">
+                        <i class="fa fa-stop"></i>
+                    </button>
+
+                    <!--<button type="button" id="button_bw" class="btn">-->
+                    <!--<i class="fa fa-backward"></i>-->
+                    <!--</button>-->
+
+                    <button type="button" id="button_pause" class="btn">
+                        <i class="fa fa-pause"></i>
+                    </button>
+
+                    <button type="button" id="button_play" class="btn">
+                        <i class="fa fa-play"></i>
+                    </button>
+
+                    <!--<button type="button" id="button_stop" class="btn">-->
+                    <!--<i class="fa fa-stop"></i>-->
+                    <!--</button>-->
+
+                    <button type="button" id="button_fw" class="btn">
+                        <i class="fa fa-forward"></i>
+                    </button>
+
+                    <button type="button" id="button_ffw" class="btn">
+                        <i class="fa fa-fast-forward"></i>
+                    </button>
+                </div>
+                <p>Center Object Mass: <span id="center_mass"></span></p>
+                <p>Reference Time: <span id="reference"></span></p>
+
+                <div id="relativeTimes"></div>
+
+                <div id="addParticle">
+                    <h3>Add a Particle</h3>
+                    <label for="particleName">Name</label><br>
+                    <input type="text" id="particleName" placeholder="Name"><br>
+                    <label for="particleRadius">Radius</label><br>
+                    <input type="number" id="particleRadius" placeholder="Radius"><br>
+                    <label for="particleColor">Color</label><br>
+                    <input type="color" id="particleColor" placeholder="Color"><br><br>
+                    <button id="addParticleButton" type="button" class="btn btn-primary">Add Particle</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 
@@ -152,6 +214,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="js/vendor/verge.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
