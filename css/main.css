@@ -426,16 +426,37 @@ h1,h2,h3,h4, h5{
 }
 
 #content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar {
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
-    width: 250px;
+    left: 0;
+    width: 350px;
     height: 100%;
     z-index: 1;
     color: #FFF;
     background-color: rgba(24, 28, 34, 0.8);
-    font-size: 16px;
+    
     padding: 10px;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar h5{
+    text-align: left;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar h5#reference-title i{
+    color: #000;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar h5#earth-title i{
+    color: blue;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar h5#mars-title i{
+    color: red;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar span{
+    text-align: left;
+}
+#content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer svg{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%,0);
 }
 
 #content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar input {

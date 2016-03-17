@@ -11,6 +11,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -150,58 +151,21 @@
 
         <div id="timeDilationSimulationContainer">
             <div id="sidebar">
-                <div class="player text-center">
-                    <button type="button" id="increase_mass" class="btn">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                    <button type="button" id="decrease_mass" class="btn">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <div class="player text-center">
-                    <button type="button" id="button_stop" class="btn">
-                        <i class="fa fa-stop"></i>
-                    </button>
-
-                    <!--<button type="button" id="button_bw" class="btn">-->
-                    <!--<i class="fa fa-backward"></i>-->
-                    <!--</button>-->
-
-                    <button type="button" id="button_pause" class="btn">
-                        <i class="fa fa-pause"></i>
-                    </button>
-
-                    <button type="button" id="button_play" class="btn">
-                        <i class="fa fa-play"></i>
-                    </button>
-
-                    <!--<button type="button" id="button_stop" class="btn">-->
-                    <!--<i class="fa fa-stop"></i>-->
-                    <!--</button>-->
-
-                    <button type="button" id="button_fw" class="btn">
-                        <i class="fa fa-forward"></i>
-                    </button>
-
-                    <button type="button" id="button_ffw" class="btn">
-                        <i class="fa fa-fast-forward"></i>
-                    </button>
-                </div>
-                <p>Center Object Mass: <span id="center_mass"></span></p>
-                <p>Reference Time: <span id="reference"></span></p>
-
-                <div id="relativeTimes"></div>
-
-                <div id="addParticle">
-                    <h3>Add a Particle</h3>
-                    <label for="particleName">Name</label><br>
-                    <input type="text" id="particleName" placeholder="Name"><br>
-                    <label for="particleRadius">Radius</label><br>
-                    <input type="number" id="particleRadius" placeholder="Radius"><br>
-                    <label for="particleColor">Color</label><br>
-                    <input type="color" id="particleColor" placeholder="Color"><br><br>
-                    <button id="addParticleButton" type="button" class="btn btn-primary">Add Particle</button>
-                </div>
+                <h5 id="reference-title">
+                   <i class="fa fa-circle"></i> &nbsp;Reference Time: 
+                    
+                </h5>
+                <span id="reference">18820</span>
+                <h5 id="earth-title">
+                    <i class="fa fa-circle"></i> &nbsp;earth is  ahead by:
+                    
+                </h5>
+                <span id="earth">3.142304194625467e-7</span>
+                <h5 id="mars-title">
+                    <i class="fa fa-circle"></i> &nbsp;mars is  ahead by:
+                    
+                </h5>
+                <span id="mars">2.3567190510220826e-7</span>
             </div>
         </div>
 
@@ -212,24 +176,24 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-<script src="js/vendor/verge.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
-<script src="js/vendor/lightDistortion.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/vendor/verge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
+    <script src="js/vendor/lightDistortion.js"></script>
 
-<script src='js/vendor/phaser.js'></script>
-<script src="js/vendor/stats.min.js"></script>
-<script src="js/vendor/three.color.js"></script>
+    <script src='js/vendor/phaser.js'></script>
+    <script src="js/vendor/stats.min.js"></script>
+    <script src="js/vendor/three.color.js"></script>
 
-<script src="js/plugins.js"></script>
+    <script src="js/plugins.js"></script>
 
-<script>
+    <script>
 
 
-    BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
+        BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
     distanceFromBlackHole: 150, // 80 is default
     polynomialDegree: 2, // 2 is default
     numAngleTableEntries: 1000, // 1000 is default. More might improve quality but impact performance
