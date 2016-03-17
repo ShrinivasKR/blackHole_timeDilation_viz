@@ -7,12 +7,14 @@ $(function() {
 	// setup constants
 	var canvasX = 250;
 	var canvasY = 50;
-	var canvasDim = 500;
-	var centerOffset = canvasDim / 2;
+	var canvasWidth = $(document).width() - (2 * $('#sidebar').width());
+	var canvasHeight = $(document).height();
+	var centerYOffset = canvasHeight / 2;
+	var centerXOffset = canvasWidth / 2;
 	const interval = 3; // DO NOT MODIFY THIS ONE
 	var animationState = 1; // 1 for play
 	var referenceTime = 0;
-	var paper = Raphael(canvasX, canvasY, canvasDim, canvasDim);
+	var paper = Raphael(canvasX, canvasY, canvasWidth, canvasHeight);
 
 	// center object mass settings
 	var centerObjectMass = 5000000000;
@@ -29,7 +31,7 @@ $(function() {
 	addObject('mars', 200, "red"); //debug
 
 	// center mass/black hole
-	var centerObject = paper.circle(centerOffset, centerOffset, centerObjectSize);
+	var centerObject = paper.circle(centerXOffset, centerYOffset, centerObjectSize);
 	centerObject.attr("fill", "#000").attr("stroke", "#000");
 
 	// initialize movement
@@ -75,8 +77,8 @@ $(function() {
 		if (radius < lowerBound){
 			return false;
 		}
-		var x = centerOffset;
-		var y = centerOffset;
+		var x = centerXOffset;
+		var y = centerYOffset;
 		orbitingObjects.push({
 			name: name,
 			radius: radius,
@@ -87,9 +89,13 @@ $(function() {
 		});
 	}
 
-	$('#button_fbw').click(function(){
+	$('#button_stop').click(function(){
 		console.log("restart invoked.");
+		orbitingObjects.forEach(function(d) {
+			d.theta = 0;
+		});
 		animationState = 0;
+		referenceTime = 0;
 		// code to reset
 	});
 
@@ -135,15 +141,16 @@ $(function() {
 		if (centerObjectMass > 250000000) {
 			centerObjectMass = centerObjectMass / 2
 		}
-	})
-
-	$( "#resetTimes" ).click(function() {
-        console.log("reset times");
-        referenceTime = 0;
 	});
 
     $( "#addParticleButton" ).click(function() {
-        console.log("Adding Particle of Name: " + $('#particleName').val() + " Radius: " + $('#particleRadius').val()+ " Color: " + $('#particleColor').val());
-        addObject($('#particleName').val(), $('#particleRadius').val(), $('#particleColor').val())
+		var particleName = $('#particleName').val();
+		var particleRadius = $('#particleRadius').val();
+		var particleColor = $('#particleColor').val();
+        console.log("Adding Particle of Name: " + particleName + " Radius: " + particleRadius
+			+ " Color: " + particleColor);
+		if (particleName && particleColor && particleRadius) {
+			addObject(particleName, particleRadius, particleColor)
+		}
     });
 });
