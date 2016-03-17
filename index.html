@@ -92,36 +92,27 @@
       </div>
   </div>
   <div class="full-wrapper content" id="content-5">
-        <div class="bg-background non-opaq-black"></div>
-        <div class="container">
-            <div class="row">
-                <h2>Black Hole Formation Process</h2>
-            </div>
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                  <p>
-                      Black holes, because of their very intense gravity will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted.
-                  </p>
-              </div>
-              
-
-          </div>
-
-      </div>
-  </div>
+    <div class="bg-background non-opaq-black"></div>
+    <div id="lightdistortion"></div>
+</div>
 
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-  <script src="js/vendor/verge.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="js/vendor/verge.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
+<script src="js/vendor/lightDistortion.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    BlackHole.blackHoleifyImage('lightdistortion', 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Carina_Dwarf_Galaxy.jpg');
+</script>
+<script src="js/main.js"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-  <script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
     e=o.createElement(i);r=o.getElementsByTagName(i)[0];

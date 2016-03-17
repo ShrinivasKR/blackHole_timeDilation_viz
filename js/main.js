@@ -171,8 +171,8 @@ actionsInViewports = (function() {
   }
 
   var content1InVP = new inViewportOnceObj();
-  var content2InVP = new inViewportOnceObj();
-  var content3InVP = new inViewportOnceObj();
+  
+  var content5InVP = new inViewportOnceObj();
 
   window.onscroll = function() {
 
@@ -190,6 +190,12 @@ actionsInViewports = (function() {
         ease: Power3.easeOut
       });
 
+    });
+
+    content5InVP.change(verge.inY($( "#content-4" ),-verge.viewportH()/2), function() {
+      $( "#content-5" ).css({opacity:1});
+    }, function() {
+      $( "#content-5" ).css({opacity:0});
     });
 
 
