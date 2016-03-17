@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1">
                   <p>
-                      Black holes, because of their very intense gravity will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted.
+                      Black holes, because of their very intense gravity will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted. See how that looks like in the next section...
                   </p>
               </div>
 
@@ -95,10 +95,7 @@
     <div class="bg-background non-opaq-black"></div>
     <div class="lightDistortionWrapper">
     
-
-    
-        <div id="lightDistortionContainer" width="100%" height="100%"></div>
-    
+        <canvas id="lightDistortionContainer" width="100%" height="100%"></canvas>
 
     </div>
   </div>
@@ -127,7 +124,7 @@
 <script>
 
 
-BlackHole.blackHoleifyImage('lightDistortionContainer', 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Carina_Dwarf_Galaxy.jpg',{
+BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
     distanceFromBlackHole: 150, // 80 is default
     polynomialDegree: 2, // 2 is default
     numAngleTableEntries: 1000, // 1000 is default. More might improve quality but impact performance
