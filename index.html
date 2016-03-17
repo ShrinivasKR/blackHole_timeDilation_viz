@@ -94,33 +94,37 @@
   <div class="full-wrapper content" id="content-5">
     <div class="bg-background non-opaq-black"></div>
     <div class="lightDistortionWrapper">
-        
+
         <canvas id="lightDistortionContainer" width="100%" height="100%"></canvas>
 
     </div>
 </div>
-<div class="full-wrapper title" id="title-3">
-    <div class="bg-background non-opaq-black"></div>
-    <div class="container">
-        <div class="row">
-            <h1 class="big-title text-center">Black Hole Gravity</h1>
-        </div>
-    </div>
-</div>
+<div class="full-wrapper content" id="content-6">
+        <div class="bg-background non-opaq-black"></div>
+        <div class="container">
+            <div class="row">
+                <h2>Black hole gravity</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <p>
+                      The below simulation shows how black holes affect the trajectory of light. 
+                  </p>
+              </div>
 
-<div class="full-wrapper title" id="content-6">
-    <div class="bg-background non-opaq-black"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-              <p>
-                  Black holes, because of their very intense gravity will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted. See how that looks like in the next section...
-              </p>
+
           </div>
-
 
       </div>
   </div>
+
+<div class="full-wrapper title" id="content-7">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="gravitySimulationWrapper">
+
+        <div id="gravitySimulationContainer"></div>
+
+    </div>
 </div>
 
 
@@ -134,6 +138,11 @@
 <script src="js/vendor/verge.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
 <script src="js/vendor/lightDistortion.js"></script>
+
+<script src='js/vendor/phaser.js'></script>
+<script src="js/vendor/stats.min.js"></script>
+<script src="js/vendor/three.color.js"></script>
+
 <script src="js/plugins.js"></script>
 
 <script>
