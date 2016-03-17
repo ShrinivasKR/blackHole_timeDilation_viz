@@ -403,7 +403,7 @@ var gravitySimulation = (function() {
 
 });
 var timeDilationSimulations = (function() {
-  
+
 
   // setup constants
   var canvasX = 250;
@@ -415,7 +415,7 @@ var timeDilationSimulations = (function() {
   const interval = 3; // DO NOT MODIFY THIS ONE
   var animationState = 1; // 1 for play
   var referenceTime = 0;
-  
+
   var paper = Raphael(document.getElementById('timeDilationSimulationContainer'), canvasWidth, canvasHeight);
 
   // center object mass settings
@@ -456,7 +456,7 @@ var timeDilationSimulations = (function() {
 
       var timeSelector = $("#" + object.name);
       if (!timeSelector.length) {
-        $("#relativeTimes").append("<p>" + object.name + " is  ahead by: <span id=" + object.name + "></span></p>")
+        $("#relativeTimes").append("<p>" + object.name + " has experienced <span id=" + object.name + "></span> less time that the center mass</p>")
       }
       timeSelector.text(amountAhead)
     });
