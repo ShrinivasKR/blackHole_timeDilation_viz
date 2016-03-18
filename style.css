@@ -16,9 +16,9 @@
     color: #FFF;
     background-color: rgba(24, 28, 34, 0.8);
     font-size: 16px;
-    padding: 10px;
 }
 
-#sidebar input {
-    color: black;
+.player p{
+    margin: 0;
+    padding: 0;
 }

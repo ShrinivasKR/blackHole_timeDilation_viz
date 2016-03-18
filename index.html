@@ -1,15 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="sidebar">
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <canvas id="particle"></canvas>
+    <div class="full-wrapper title" id="title-1">
+        <div class="container">
+            <div class="row">
+                <h1 class="big-title text-center">No escape from inside a black hole</h1>
+            </div>
+        </div>
+    </div>
+    <div class="full-wrapper content" id="content-1">
+        <div class="bg-background bg-color-black"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <p>
+                        When matter is compressed beyond a certain density, a black hole is created. It's called black because no light can escape from it. Some black holes are the tombstones of what were once massive stars. An enormous black hole is thought to lurk at the center of the Milky Way galaxy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="full-wrapper title" id="title-2">
+        <div class="bg-background non-opaq-black"></div>
+        <div class="container">
+            <div class="row">
+                <h1 class="big-title text-center">How does a black hole form?</h1>
+                <p>Black holes were once stars. </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-wrapper content" id="content-2">
+        <div class="bg-background non-opaq-black"></div>
+        <div class="container">
+            <div class="row">
+                <h2>Black Hole Formation Process</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <h5>
+                        01. Dying Star
+                    </h5>
+                    <p>As nuclear energy starts running out, gravity starts to overcome pressure, increasing core density and gravitational force.</p>
+                </div>
+                <div class="col-xs-3">
+                    <h5>02. Supernova</h5>
+                    <p>Nuclear reaction stops and the star explodes as a supernova, expelling outer parts of the star into space.</p>
+                </div>
+                <div class="col-xs-3">
+                    <h5>03. Collapse</h5>
+                    <p>The core collapses under its own weight into single point of infinite desity.</p>
+                </div>
+                <div class="col-xs-3">
+                    <h5>04. Black hole</h5>
+                    <p>Gravitational forces at this stage are so strong light cannot escape from its pull.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="full-wrapper content" id="content-4">
+        <div class="bg-background non-opaq-black"></div>
+        <div class="container">
+            <div class="row">
+                <h2>Light Distortion</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <p>
+                      Black holes, because of their very massive mass and intense gravity, will cause light to bend around them, which will cause the appearance of background objects (like&nbsp;stars) to be distorted. See how that looks like in the next section...
+                  </p>
+              </div>
+
+
+          </div>
+
+      </div>
+  </div>
+  <div class="full-wrapper content" id="content-5">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="lightDistortionWrapper">
+
+        <canvas id="lightDistortionContainer" width="100%" height="100%"></canvas>
+
+    </div>
+</div>
+<div class="full-wrapper content" id="content-6">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <h2>Black hole gravity</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <p>
+                  The below simulation shows how black holes affect the trajectory of light.
+              </p>
+          </div>
+
+
+      </div>
+
+  </div>
+</div>
+
+<div class="full-wrapper content" id="content-7">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="gravitySimulationWrapper">
+
+        <div id="gravitySimulationContainer"></div>
+
+    </div>
+</div>
+<div class="full-wrapper content" id="content-8">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="container">
+        <div class="row">
+            <h2>Black hole and time dilation</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <p>
+                  While this visualization below doesn't specifically show a black hole, it does help intuit how objects would have to behave to stay in orbit around an object with increasing mass (black hole). We also assume that the masses of the orbiting objects are negligible compared to the center mass and that the orbits are perfectly circular"
+              </p>
+          </div>
+
+
+      </div>
+
+  </div>
+</div>
+<div class="full-wrapper content" id="content-9">
+    <div class="bg-background non-opaq-black"></div>
+    <div class="timeDilationSimulationWrapper">
+
+        <div id="timeDilationSimulationContainer">
+          <div id="sidebar">
             <div class="player text-center">
+                <p>Mass Controls:</p>
                 <button type="button" id="increase_mass" class="btn">
                     <i class="fa fa-plus"></i>
                 </button>
@@ -18,13 +161,10 @@
                 </button>
             </div>
             <div class="player text-center">
+                <p>Animation Controls:</p>
                 <button type="button" id="button_stop" class="btn">
                     <i class="fa fa-stop"></i>
                 </button>
-
-                <!--<button type="button" id="button_bw" class="btn">-->
-                    <!--<i class="fa fa-backward"></i>-->
-                <!--</button>-->
 
                 <button type="button" id="button_pause" class="btn">
                     <i class="fa fa-pause"></i>
@@ -33,10 +173,6 @@
                 <button type="button" id="button_play" class="btn">
                     <i class="fa fa-play"></i>
                 </button>
-
-                <!--<button type="button" id="button_stop" class="btn">-->
-                    <!--<i class="fa fa-stop"></i>-->
-                <!--</button>-->
 
                 <button type="button" id="button_fw" class="btn">
                     <i class="fa fa-forward"></i>
@@ -62,9 +198,49 @@
                 <button id="addParticleButton" type="button" class="btn btn-primary">Add Particle</button>
             </div>
         </div>
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
-        <script src="app.js"></script>
-    </body>
+</div>
+</div>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="js/vendor/verge.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.js"></script>
+<script src="js/vendor/lightDistortion.js"></script>
+
+<script src='js/vendor/phaser.js'></script>
+<script src="js/vendor/stats.min.js"></script>
+<script src="js/vendor/three.color.js"></script>
+
+<script src="js/plugins.js"></script>
+
+<script>
+
+
+    BlackHole.blackHoleifyImage('lightDistortionContainer', 'img/galaxy-wallpaper-11.jpg',{
+    distanceFromBlackHole: 150, // 80 is default
+    polynomialDegree: 2, // 2 is default
+    numAngleTableEntries: 1000, // 1000 is default. More might improve quality but impact performance
+    fovAngleInDegrees: 80, // 73 is default. Yeah, it's an unusual choice, but it just looked cool, ok?
+});
+</script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='https://www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+</body>
 </html>
