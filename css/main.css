@@ -454,10 +454,10 @@ h1,h2,h3,h4, h5{
     text-align: left;
 }
 #content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer svg{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%,0);
+    
+    left: 350px;
+    top: 0px;
+    
 }
 
 #content-9 .timeDilationSimulationWrapper #timeDilationSimulationContainer #sidebar input {
