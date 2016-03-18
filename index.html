@@ -188,27 +188,64 @@
             <div id="relativeTimes"></div>
 
             <div id="addParticle">
-                <h3>Add a Particle</h3>
-                <label for="particleName">Name</label><br>
-                <input type="text" id="particleName" placeholder="Name"><br>
-                <label for="particleRadius">Radius</label><br>
-                <input type="number" id="particleRadius" placeholder="Radius"><br>
-                <label for="particleColor">Color</label><br>
-                <input type="color" id="particleColor" placeholder="Color"><br><br>
-                <button id="addParticleButton" type="button" class="btn btn-primary">Add Particle</button>
-            </div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#addParticleModal">
+                  Add Particle
+              </button>
+
+          </div>
+
+
+
+
+      </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="modal fade bs-example-modal-sm" id="addParticleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Add a particle</h4>
         </div>
+        <div class="modal-body">
+            <form>
+              <div class="form-group">
+                  <label for="Particle Name">Particle Name</label>
+                  <input required="true" type="text" id="particleName" class="form-control" placeholder="Particle #J011">
+              </div>
+              <div class="form-group">
+                <label for="Particle Radius">Particle Radius</label>
+                <input required="true" type="number" id="particleRadius" class="form-control" placeholder="200">
+            </div>
+            <div class="form-group">
+                <label for="Particle Color">Particle Color</label>
+                <input required="true" type="color" id="particleColor" class="form-control" placeholder="Color" >
+            </div>
+        </form>
     </div>
 
+    <div class="modal-footer">
+        <button id="addParticleButton" type="button" class="btn btn-primary">Add Now</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
 </div>
+
 </div>
 
 
+</div>
 
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="js/vendor/verge.min.js"></script>
@@ -231,6 +268,21 @@
     fovAngleInDegrees: 80, // 73 is default. Yeah, it's an unusual choice, but it just looked cool, ok?
 });
 </script>
+
+
+<div class="template">
+    <div class="particle-stat">
+        <p>
+            <span class="particleObjectName"></span>
+            <span> has experienced </span>
+            <span class="particleObjectTime"></span><br/>
+            <span> less time that the center mass </span>
+
+        </p>
+    </div>
+</div>
+
+
 <script src="js/main.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

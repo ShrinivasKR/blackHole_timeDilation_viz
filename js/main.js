@@ -423,7 +423,7 @@ var timeDilationSimulations = (function() {
   var centerObjectSize = 10; //arbitrary
 
   // physical constants and constraints
-  var gravitationalConstant =  6.674 * Math.pow(10, -11);
+  var gravitationalConstant = 6.674 * Math.pow(10, -11);
   var speedOfLight = 299792458;
   var lowerBound = (3 * centerObjectMass * gravitationalConstant) / (speedOfLight ^ 2);
 
@@ -432,6 +432,18 @@ var timeDilationSimulations = (function() {
   addObject('earth', 150, "blue"); //debug
   addObject('mars', 200, "red"); //debug
 
+
+  orbitingObjects.forEach(function(object, index) {
+
+    var templateElement = $.parseHTML($('.template').html())[1];
+    templateElement.setAttribute("id", object.name.replace(/\s/g, ''));
+    $(templateElement).find('.particleObjectName').text(object.name.toUpperCase());
+
+    $('#relativeTimes').append(templateElement);
+  });
+
+
+
   // center mass/black hole
   var centerObject = paper.circle(centerXOffset, centerYOffset, centerObjectSize);
   centerObject.attr("fill", "#000").attr("stroke", "#000");
@@ -439,13 +451,17 @@ var timeDilationSimulations = (function() {
   // initialize movement
   movePlanets();
 
-  function movePlanets(){
+  function movePlanets() {
+    //$("#relativeTimes").children("p").remove();
+
     var timePassed = interval * animationState;
     referenceTime += timePassed;
     $('#center_mass').text(centerObjectMass);
     $('#reference').text(referenceTime);
 
     orbitingObjects.forEach(function(object) {
+
+
       var velocity = Math.sqrt(gravitationalConstant * centerObjectMass / object.radius);
       object.theta = object.theta + (velocity / object.radius * timePassed);
       object.x = object.radius * Math.cos(object.theta);
@@ -453,16 +469,13 @@ var timeDilationSimulations = (function() {
       object.raphaelObj.transform('t' + object.x + ',' + object.y);
 
       var amountAhead = referenceTime - calculateAge(centerObjectMass, object.radius);
+      
+      $("#" + object.name.replace(/\s/g, '')).find('.particleObjectTime').text(amountAhead);
 
-      var timeSelector = $("#" + object.name);
-      if (!timeSelector.length) {
-        $("#relativeTimes").append("<p>" + object.name + " has experienced <span id=" + object.name + "></span> less time that the center mass</p>")
-      }
-      timeSelector.text(amountAhead)
     });
 
     if (animationState) { // if animationState is 0, break to save memory
-      setTimeout(function () {
+      setTimeout(function() {
         movePlanets();
       }, interval);
     } //else {console.log('failings')} // debug code
@@ -470,13 +483,13 @@ var timeDilationSimulations = (function() {
 
   function calculateAge(mass, radius) {
     // relative time
-    return referenceTime * Math.sqrt(1 - (3/2) *
-        (1/radius) * (3 * gravitationalConstant * mass)/speedOfLight);
+    return referenceTime * Math.sqrt(1 - (3 / 2) *
+      (1 / radius) * (3 * gravitationalConstant * mass) / speedOfLight);
   }
 
   // add object to system
   function addObject(name, radius, color) {
-    if (radius < lowerBound){
+    if (radius < lowerBound) {
       return false;
     }
     var x = centerXOffset;
@@ -491,7 +504,7 @@ var timeDilationSimulations = (function() {
     });
   }
 
-  $('#button_stop').click(function(){
+  $('#button_stop').click(function() {
     console.log("restart invoked.");
     orbitingObjects.forEach(function(d) {
       d.theta = 0;
@@ -515,7 +528,7 @@ var timeDilationSimulations = (function() {
     }
   });
 
-  $('#button_fw').click(function(){
+  $('#button_fw').click(function() {
     console.log("button forward invoked.");
     var lastState = animationState;
     animationState = 2;
@@ -524,7 +537,7 @@ var timeDilationSimulations = (function() {
     }
   });
 
-  $('#button_ffw').click(function(){
+  $('#button_ffw').click(function() {
     console.log("button fast forward invoked.");
     var lastState = animationState;
     animationState = 4;
@@ -545,16 +558,24 @@ var timeDilationSimulations = (function() {
     }
   });
 
-    $( "#addParticleButton" ).click(function() {
+  $("#addParticleButton").click(function() {
     var particleName = $('#particleName').val();
     var particleRadius = $('#particleRadius').val();
     var particleColor = $('#particleColor').val();
-        console.log("Adding Particle of Name: " + particleName + " Radius: " + particleRadius
-      + " Color: " + particleColor);
+    console.log("Adding Particle of Name: " + particleName + " Radius: " + particleRadius + " Color: " + particleColor);
     if (particleName && particleColor && particleRadius) {
-      addObject(particleName, particleRadius, particleColor)
+      addObject(particleName, particleRadius, particleColor);
+
+      $('#addParticleModal').modal('hide');
+
+      var templateElement = $.parseHTML($('.template').html())[1];
+      templateElement.setAttribute("id", particleName.replace(/\s/g, ''));
+      $(templateElement).find('.particleObjectName').text(particleName.toUpperCase());
+
+      $('#relativeTimes').append(templateElement);
     }
-    });
+
+  });
 
 });
 actionsInViewports = (function() {
